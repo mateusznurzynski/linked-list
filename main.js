@@ -86,6 +86,17 @@ const LinkedList = function LinkedList() {
       this.tail = newTail;
       return oldTail;
     },
+    contains(value) {
+      let currentNode = this.head;
+
+      while (currentNode !== null) {
+        if (currentNode.value === value) {
+          return true;
+        }
+        currentNode = currentNode.nextNode;
+      }
+      return false;
+    },
   };
 };
 
@@ -114,3 +125,4 @@ console.log(list.toString());
 console.log(list);
 console.log(list.size);
 console.log(list.at(5));
+console.log(list.contains('Prepended value'));
