@@ -110,6 +110,21 @@ const LinkedList = function LinkedList() {
       }
       return null;
     },
+    insertAt(value, index) {
+      if (index <= 0) {
+        this.prepend(value);
+        return true;
+      } else if (index >= this.size - 1) {
+        this.append(value);
+        return true;
+      }
+      const oldNode = this.at(index);
+      const previousNode = oldNode.previousNode;
+      const newNode = Node(value, oldNode, previousNode);
+      previousNode.nextNode = newNode;
+      oldNode.previousNode = newNode;
+      return true;
+    },
   };
 };
 
@@ -134,6 +149,7 @@ list.append('9');
 list.append('10');
 list.prepend('Prepended value');
 list.pop();
+list.insertAt('Inserted value', 5);
 console.log(list.toString());
 console.log(list);
 console.log(list.size);
