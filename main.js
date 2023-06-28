@@ -36,11 +36,14 @@ const LinkedList = function LinkedList() {
       }
     },
     at(index) {
-      if (index === 0) {
-        return this.head;
-      }
       const lastIndex = this.size - 1;
       const middleIndex = parseInt(lastIndex / 2);
+      if (index <= 0) {
+        return this.head;
+      }
+      if (index > lastIndex) {
+        return this.tail;
+      }
       if (index <= middleIndex) {
         let currentNode = this.head;
         let currentIndex = 0;
