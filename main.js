@@ -12,6 +12,7 @@ const LinkedList = function LinkedList() {
       } else {
         const oldHead = this.head;
         const newNode = Node(value, oldHead);
+        oldHead.previousNode = newNode;
         this.head = newNode;
         return newNode;
       }
@@ -34,14 +35,17 @@ const LinkedList = function LinkedList() {
   };
 };
 
-const Node = function Node(value = null, nextNode = null) {
+const Node = function Node(value = null, nextNode = null, previousNode = null) {
   return {
     value,
     nextNode,
+    previousNode,
   };
 };
 
 const list = LinkedList();
 list.prepend('some value');
 list.prepend('some other value');
+list.prepend('some weird value');
 console.log(list.toString());
+console.log(list);
