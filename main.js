@@ -97,6 +97,19 @@ const LinkedList = function LinkedList() {
       }
       return false;
     },
+    find(value) {
+      let currentIndex = 0;
+      let currentNode = this.head;
+
+      while (currentNode !== null) {
+        if (currentNode.value === value) {
+          return currentIndex;
+        }
+        currentNode = currentNode.nextNode;
+        currentIndex++;
+      }
+      return null;
+    },
   };
 };
 
@@ -126,3 +139,4 @@ console.log(list);
 console.log(list.size);
 console.log(list.at(5));
 console.log(list.contains('Prepended value'));
+console.log(list.find('5'));
