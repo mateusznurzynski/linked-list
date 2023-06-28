@@ -76,6 +76,13 @@ const LinkedList = function LinkedList() {
       string += 'null';
       return string;
     },
+    pop() {
+      const oldTail = this.tail;
+      const newTail = this.tail.previousNode;
+      newTail.nextNode = null;
+      this.tail = newTail;
+      return oldTail;
+    },
   };
 };
 
@@ -99,6 +106,7 @@ list.append('8');
 list.append('9');
 list.append('10');
 list.prepend('Prepended value');
+list.pop();
 console.log(list.toString());
 console.log(list);
 console.log(list.size);
