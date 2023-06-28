@@ -17,6 +17,20 @@ const LinkedList = function LinkedList() {
         return newNode;
       }
     },
+    append(value) {
+      if (this.head === null && this.tail === null) {
+        const newNode = Node(value);
+        this.head = newNode;
+        this.tail = newNode;
+        return newNode;
+      } else {
+        const oldTail = this.tail;
+        const newNode = Node(value, null, oldTail);
+        oldTail.nextNode = newNode;
+        this.tail = newNode;
+        return newNode;
+      }
+    },
     toString() {
       let string = '';
       if (this.head === null && this.tail === null) {
@@ -47,5 +61,6 @@ const list = LinkedList();
 list.prepend('some value');
 list.prepend('some other value');
 list.prepend('some weird value');
+list.append('Appended value');
 console.log(list.toString());
 console.log(list);
