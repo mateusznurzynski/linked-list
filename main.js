@@ -8,11 +8,13 @@ const LinkedList = function LinkedList() {
         const newNode = Node(value);
         this.head = newNode;
         this.tail = newNode;
+        this.size++;
         return newNode;
       } else {
         const oldHead = this.head;
         const newNode = Node(value, oldHead);
         oldHead.previousNode = newNode;
+        this.size++;
         this.head = newNode;
         return newNode;
       }
@@ -22,13 +24,41 @@ const LinkedList = function LinkedList() {
         const newNode = Node(value);
         this.head = newNode;
         this.tail = newNode;
+        this.size++;
         return newNode;
       } else {
         const oldTail = this.tail;
         const newNode = Node(value, null, oldTail);
         oldTail.nextNode = newNode;
+        this.size++;
         this.tail = newNode;
         return newNode;
+      }
+    },
+    at(index) {
+      if (index === 0) {
+        return this.head;
+      }
+      const lastIndex = this.size - 1;
+      const middleIndex = parseInt(lastIndex / 2);
+      if (index <= middleIndex) {
+        let currentNode = this.head;
+        let currentIndex = 0;
+        while (currentNode !== null) {
+          if (currentIndex++ === index) {
+            return currentNode;
+          }
+          currentNode = currentNode.nextNode;
+        }
+      } else {
+        let currentNode = this.tail;
+        let currentIndex = lastIndex;
+        while (currentNode !== null) {
+          if (currentIndex-- === index) {
+            return currentNode;
+          }
+          currentNode = currentNode.previousNode;
+        }
       }
     },
     toString() {
@@ -58,9 +88,18 @@ const Node = function Node(value = null, nextNode = null, previousNode = null) {
 };
 
 const list = LinkedList();
-list.prepend('some value');
-list.prepend('some other value');
-list.prepend('some weird value');
-list.append('Appended value');
+list.append('1');
+list.append('2');
+list.append('3');
+list.append('4');
+list.append('5');
+list.append('6');
+list.append('7');
+list.append('8');
+list.append('9');
+list.append('10');
+list.prepend('Prepended value');
 console.log(list.toString());
 console.log(list);
+console.log(list.size);
+console.log(list.at(5));
