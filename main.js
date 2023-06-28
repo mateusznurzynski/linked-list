@@ -16,6 +16,21 @@ const LinkedList = function LinkedList() {
         return newNode;
       }
     },
+    toString() {
+      let string = '';
+      if (this.head === null && this.tail === null) {
+        string += '( null )';
+        return string;
+      }
+      let currentNode = this.head;
+      while (currentNode !== null) {
+        const value = currentNode.value;
+        string += `( ${value} ) -> `;
+        currentNode = currentNode.nextNode;
+      }
+      string += 'null';
+      return string;
+    },
   };
 };
 
@@ -27,3 +42,6 @@ const Node = function Node(value = null, nextNode = null) {
 };
 
 const list = LinkedList();
+list.prepend('some value');
+list.prepend('some other value');
+console.log(list.toString());
